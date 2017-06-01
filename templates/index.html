@@ -33,7 +33,6 @@
                     {% for question in row %}
                         {% if question == row[6] %}
                             <td><a href="/user/{{row[7]}}">{{ question }}</a></td>
-                        {% endif %}
                         {% else %}
                         <td>{{ question }}</td>
                         {% endif %}

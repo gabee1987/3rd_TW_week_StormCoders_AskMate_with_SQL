@@ -110,4 +110,4 @@ ENV/
 
 # End of https://www.gitignore.io/api/python,visualstudiocode
 
-/local_config.py
+/local_config2.py
