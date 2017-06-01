@@ -20,25 +20,27 @@
             </ul>
         </div>
         <div class="container">
-            <table id="table" class="table">
-            <tr>
-                <th class="table-header">Your questions</th>
-            </tr>
-                {% for row in selected_question_datas %}
+            <table id="table" class="q-table">
                 <tr>
-                    <td>
-                        <a href="/question/{{ row[1] }}">{{ row[0] }}</a>
-                    </td>
+                    <th class="table-header">Your questions</th>
                 </tr>
-                {% endfor %}
-            <tr>
-                <th class="table-header">Your answers</th>
-            </tr>
-            <tr>
-                {% for answer in selected_answer_datas %}
-                    <td>answer</td>
-                {% endfor %}
-            </tr>
+                    {% for question in selected_question_datas %}
+                    <tr>
+                        <td>
+                            <a href="/question/{{ question[1] }}">{{ question[0] }}</a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+            </table>
+            <table class="ans-table">
+                <tr>
+                    <th class="table-header">Your answers</th>
+                </tr>
+                    {% for answer in selected_answer_datas %}
+                    <tr>
+                        <td>{{ answer }}</td>
+                    </tr>
+                    {% endfor %}
             </table>
         </div>
    </body>

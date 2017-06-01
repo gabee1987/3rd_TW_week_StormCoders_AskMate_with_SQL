@@ -27,13 +27,11 @@
                         <th class="question_head">{{ head }}</th>
                     {% endfor %}
                 </tr>
-                    <tr>
                         {% for question in view_question %}
                         <tr>
                             {% for data in question %}
                                 <td>{{ data }}</td>
                             {% endfor %}
-                        </tr>
                         {% endfor %}
                     </tr>
             </table>
@@ -44,20 +42,18 @@
                         <th class="answer_head">{{ head }}</th>
                     {% endfor %}
                 </tr>
+                    {% for answer in view_answers %}
                     <tr>
-                        {% for answer in view_answers %}
-                        <tr>
-                            {% for data in answer %}
-                                <td>{{ data }}</td>
-                            {% endfor %}
-                            <td align="middle">
-                                <a href="/answer/{{ q_id }}/{{ answer[0] }}/delete">
-                                    <img border="0" src="/static/img/bin.png" width="50" height="50">
-                                </a>
-                            </td>
-                        </tr>
+                        {% for data in answer %}
+                            <td>{{ data }}</td>
                         {% endfor %}
+                        <td align="middle">
+                            <a href="/answer/{{ q_id }}/{{ answer[0] }}/delete">
+                                <img border="0" src="/static/img/bin.png" width="50" height="50">
+                            </a>
+                        </td>
                     </tr>
+                    {% endfor %}
             </table>
             <div class="new_ans-button">
                 <a href="/question/{{ q_id }}/new-answer">
