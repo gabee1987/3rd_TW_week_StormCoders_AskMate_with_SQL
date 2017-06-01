@@ -30,7 +30,7 @@
             </tr>
             {% for row in view_questions %}
                 <tr>
-                    {% for question in row %}
+                    {% for question in row[:-1] %}
                         {% if question == row[6] %}
                             <td><a href="/user/{{row[7]}}">{{ question }}</a></td>
                         {% else %}

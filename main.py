@@ -80,13 +80,13 @@ def display_question(q_id=None):
                     'Image',
                     'Delete'
                     ]
-    data_to_modify = [q_id]
+    question_id = [q_id]
     query = update_question_by_id
-    query_execute(query, data_to_modify, 'no_data')
+    query_execute(query, question_id, 'no_data')
     query = select_question_by_id
-    view_question = query_execute(query)
+    view_question = query_execute(query, question_id)
     query = select_question_by_questionid
-    view_answers = query_execute(query)
+    view_answers = query_execute(query, question_id)
     return render_template(
                         'question.html',
                         q_id=q_id,
@@ -200,13 +200,13 @@ def add_registration():
 
 @app.route("/user/<user_id>")
 def display_user_page(user_id=None):
-    data_to_modify = [user_id]
+    user_id = [user_id]
 
     query = select_from_question
-    selected_question_datas = query_execute(query, data_to_modify)
+    selected_question_datas = query_execute(query, user_id)
 
     query = select_from_answer
-    selected_answer_datas = query_execute(query, data_to_modify)
+    selected_answer_datas = query_execute(query, user_id)
 
     return render_template(
                             'user_page.html',
@@ -221,6 +221,7 @@ def all_user():
         Displays the all-user page.
     '''
     table_headers = [
+                    'Id',
                     'First name',
                     'Last name',
                     'Username',
