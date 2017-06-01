@@ -4,7 +4,7 @@
     <head>
        <meta charset="utf-8">
        <meta name="viewport" content="width=device-width, initial-scale=1">
-       <link rel="stylesheet" href="/static/new_form.css">
+       <link rel="stylesheet" href="/static/user.css">
        <link rel="stylesheet" type="text/css"
            href="https://fonts.googleapis.com/css?family=Raleway">
        <title>User page</title>
@@ -19,27 +19,27 @@
                 <li><a href="/registration">New User</a></li>
             </ul>
         </div>
-       <table>
-           <tr>
-               <th>Your questions</th>
-           </tr>
-           <tr>
-                {% for question_datas in selected_question_datas %}
-                    {% for question_id_and_title in question_datas %}
-                        <td>
-                            <a href="/question/question_id_and_title[1]">question_id_and_title[0]</a>
-                        </td>
-                    {% endfor %}
+        <div class="container">
+            <table id="table" class="table">
+            <tr>
+                <th class="table-header">Your questions</th>
+            </tr>
+                {% for row in selected_question_datas %}
+                <tr>
+                    <td>
+                        <a href="/question/{{ row[1] }}">{{ row[0] }}</a>
+                    </td>
+                </tr>
                 {% endfor %}
-           </tr>
-           <tr>
-               <th>Your answers</th>
-           </tr>
-           <tr>
+            <tr>
+                <th class="table-header">Your answers</th>
+            </tr>
+            <tr>
                 {% for answer in selected_answer_datas %}
                     <td>answer</td>
                 {% endfor %}
-           </tr>
-       </table>
+            </tr>
+            </table>
+        </div>
    </body>
 </html>

@@ -203,7 +203,6 @@ Table
 */
 
 .table {
-    font-size: 1.1rem;
     position: relative;
     margin: auto;
     max-width: 90%;
@@ -239,7 +238,6 @@ Table
 .table td:nth-child(11) { 
     width: 2% ;
 }
-
 .table tbody tr:nth-child(1):hover,
 .table tbody tr:nth-child(1):focus {
     background-color: #d7e5ec;
