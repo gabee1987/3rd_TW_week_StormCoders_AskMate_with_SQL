@@ -80,6 +80,7 @@ def display_question(q_id=None):
                     'Vote number',
                     'Question Id',
                     'Message',
+                    'User',
                     'Image',
                     'Delete'
                     ]
@@ -157,10 +158,12 @@ def display_answer(q_id=None):
     '''
         Displays the answer form page.
     '''
-    query = display_answer_by_id
     data_to_modify = [q_id]
+    query = display_answer_by_id
     view_questions = query_execute(query, data_to_modify)
-    return render_template('answer_form.html', q_id=q_id, view_questions=view_questions)
+    query = get_all_users
+    users = query_execute(query)
+    return render_template('answer_form.html', q_id=q_id, view_questions=view_questions, users=users)
 
 
 @app.route('/question/new-answer/<q_id>', methods=['POST'])
@@ -171,7 +174,8 @@ def add_new_answer(q_id=None):
     dt = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     answer_message = request.form["answer_message"]
     query = insert_new_answer_to_database
-    data_to_modify = (dt, 0, q_id, answer_message, 0)
+    user_id = request.form['user_select']
+    data_to_modify = (dt, 0, q_id, answer_message, 0, user_id)
     query_execute(query, data_to_modify, 'no_data')
     return redirect("/question/" + q_id)
 
