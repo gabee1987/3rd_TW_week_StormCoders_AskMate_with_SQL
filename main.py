@@ -41,7 +41,9 @@ def new_question():
     '''
         Displays the question form page.
     '''
-    return render_template('question_form.html')
+    query = get_all_users
+    users = query_execute(query)
+    return render_template('question_form.html', users=users)
 
 
 @app.route('/new_question', methods=['POST'])
@@ -52,8 +54,9 @@ def add_new_question():
     dt = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     question_title = request.form['q_title']
     question_message = request.form['q_message']
+    user_select = request.form['user_select']
     query = insert_new_question
-    data_to_modify = (dt, 0, 0, question_title, question_message, 0, 1)
+    data_to_modify = (dt, 0, 0, question_title, question_message, 0, user_select)
     query_execute(query, data_to_modify, 'no_data')
     return redirect("/")
 
@@ -77,16 +80,15 @@ def display_question(q_id=None):
                     'Vote number',
                     'Question Id',
                     'Message',
+                    'User',
                     'Image',
                     'Delete'
                     ]
-    data_to_modify = [q_id]
-    query = update_question_by_id
-    query_execute(query, data_to_modify, 'no_data')
+    question_id = [q_id]
     query = select_question_by_id
-    view_question = query_execute(query)
+    view_question = query_execute(query, question_id)
     query = select_question_by_questionid
-    view_answers = query_execute(query)
+    view_answers = query_execute(query, question_id)
     return render_template(
                         'question.html',
                         q_id=q_id,
@@ -95,6 +97,13 @@ def display_question(q_id=None):
                         a_table_headers=a_table_headers,
                         view_answers=view_answers
                         )
+
+
+@app.route('/question/<question_id>/update_view')
+def update_question_view(question_id=None):
+    query = question_view_number_update
+    query_execute(query, question_id, 'no_data')
+    return redirect('/question/' + question_id)
 
 
 @app.route('/question/<q_id>/delete')
@@ -154,21 +163,24 @@ def display_answer(q_id=None):
     '''
         Displays the answer form page.
     '''
-    query = display_answer_by_id
     data_to_modify = [q_id]
+    query = display_answer_by_id
     view_questions = query_execute(query, data_to_modify)
-    return render_template('answer_form.html', q_id=q_id, view_questions=view_questions)
+    query = get_all_users
+    users = query_execute(query)
+    return render_template('answer_form.html', q_id=q_id, view_questions=view_questions, users=users)
 
 
 @app.route('/question/new-answer/<q_id>', methods=['POST'])
 def add_new_answer(q_id=None):
-    """
+    '''
     Add the new answer to database.
-    """
+    '''
     dt = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     answer_message = request.form["answer_message"]
     query = insert_new_answer_to_database
-    data_to_modify = (dt, 0, q_id, answer_message, 0)
+    user_id = request.form['user_select']
+    data_to_modify = (dt, 0, q_id, answer_message, 0, user_id)
     query_execute(query, data_to_modify, 'no_data')
     return redirect("/question/" + q_id)
 
@@ -191,8 +203,7 @@ def add_registration():
     username = request.form['username']
     birth_date = request.form['bday']
     email = request.form['email']
-    query = """INSERT INTO users (first_name, last_name, username, birth_date, email)\
-                VALUES(%s, %s, %s, %s, %s);"""
+    query = add_new_user
     data_to_modify = (first_name, last_name, username, birth_date, email)
     query_execute(query, data_to_modify, 'no_data')
     return redirect("/")
@@ -200,13 +211,13 @@ def add_registration():
 
 @app.route("/user/<user_id>")
 def display_user_page(user_id=None):
-    data_to_modify = [user_id]
+    user_id = [user_id]
 
     query = select_from_question
-    selected_question_datas = query_execute(query, data_to_modify)
+    selected_question_datas = query_execute(query, user_id)
 
     query = select_from_answer
-    selected_answer_datas = query_execute(query, data_to_modify)
+    selected_answer_datas = query_execute(query, user_id)
 
     return render_template(
                             'user_page.html',
@@ -221,6 +232,7 @@ def all_user():
         Displays the all-user page.
     '''
     table_headers = [
+                    'Id',
                     'First name',
                     'Last name',
                     'Username',

@@ -28,6 +28,14 @@
                     <textarea name="answer_message" minlength="10" required="required"></textarea></p>
                     <label class="control-label" for="textarea">Type your answer here...</label><i class="bar"></i>
                 </div>
+                <div class="select-group">
+                        <select id="select" class="select-field" name="user_select">
+                        {% for user in users %}
+                            <option value="{{ user[1] }}">{{ user[0] }}</option>
+                        {% endfor %}
+                        </select>
+                        <label for="select">User</label><i class="bar"></i>
+                    </div>
             <div class="button-container">
                 <button class="button" type="submit" value="submit"><span>Submit</span></button>
             </div>

@@ -108,8 +108,9 @@ Top menu
     transform: scaleY(1.09);
 }
 
+
 /* Codecool logo on the navbar */
-.menu-top  img {
+.menu-top img {
     float: right;
     display: block;
     padding-right: 1em;
@@ -159,15 +160,22 @@ Title
 ==========================================================================
 */
 
- h1 {
+/* Stormcoders logo */
+ .title img {
+    display: block;
+    margin: 6em auto;
+    
+}
+
+ .title h1 {
     color: #d95254;
     font-size: 3rem;
     text-align: center;
-    margin: 2em 0em 0em 0em;
+    margin: -1em 0em 0em 0em;
     letter-spacing: 0.3em;
 }
 
- h2 {
+ .title h2 {
     color: #d95254;
     font-size: 2rem;
     text-align: center;
@@ -203,9 +211,10 @@ Table
 */
 
 .table {
+    font-size: 1.1rem;
     position: relative;
     margin: auto;
-    max-width: 90%;
+    max-width: 98%;
     min-width: 90%;
     border-collapse: collapse;
 }
@@ -238,6 +247,7 @@ Table
 .table td:nth-child(11) { 
     width: 2% ;
 }
+
 .table tbody tr:nth-child(1):hover,
 .table tbody tr:nth-child(1):focus {
     background-color: #d7e5ec;
