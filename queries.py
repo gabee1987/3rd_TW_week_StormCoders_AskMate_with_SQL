@@ -49,3 +49,5 @@ select_from_answer = ("""SELECT answer.message
 select_users = """SELECT first_name, last_name, username, birth_date, email, reputation\
                 FROM users\
                 ORDER BY id;"""
+
+get_all_users = """SELECT username, id FROM users"""

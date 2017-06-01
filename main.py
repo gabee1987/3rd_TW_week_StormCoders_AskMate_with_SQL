@@ -41,7 +41,9 @@ def new_question():
     '''
         Displays the question form page.
     '''
-    return render_template('question_form.html')
+    query = get_all_users
+    users = query_execute(query, 'all_data')
+    return render_template('question_form.html', users=users)
 
 
 @app.route('/new_question', methods=['POST'])
@@ -52,8 +54,9 @@ def add_new_question():
     dt = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     question_title = request.form['q_title']
     question_message = request.form['q_message']
+    user_select = request.form['chose_user']
     query = insert_new_question
-    data_to_modify = (dt, 0, 0, question_title, question_message, 0, 1)
+    data_to_modify = (dt, 0, 0, question_title, question_message, 0, 1, user_select)
     query_execute(query, data_to_modify, 'no_data')
     return redirect("/")
 
