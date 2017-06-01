@@ -60,3 +60,5 @@ get_all_users = """SELECT username, id FROM users;"""
 
 add_new_user = """INSERT INTO users (first_name, last_name, username, birth_date, email)\
                     VALUES(%s, %s, %s, %s, %s);"""
+
+question_view_number_update = """UPDATE question SET view_number = view_number + 1 WHERE id = %s;"""

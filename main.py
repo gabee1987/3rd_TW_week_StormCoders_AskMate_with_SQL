@@ -85,8 +85,6 @@ def display_question(q_id=None):
                     'Delete'
                     ]
     question_id = [q_id]
-    query = update_question_by_id
-    query_execute(query, question_id, 'no_data')
     query = select_question_by_id
     view_question = query_execute(query, question_id)
     query = select_question_by_questionid
@@ -99,6 +97,13 @@ def display_question(q_id=None):
                         a_table_headers=a_table_headers,
                         view_answers=view_answers
                         )
+
+
+@app.route('/question/<question_id>/update_view')
+def update_question_view(question_id=None):
+    query = question_view_number_update
+    query_execute(query, question_id, 'no_data')
+    return redirect('/question/' + question_id)
 
 
 @app.route('/question/<q_id>/delete')
