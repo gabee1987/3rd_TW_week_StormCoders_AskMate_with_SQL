@@ -4,7 +4,7 @@
 '''
 
 import psycopg2
-from local_config import *
+from local_config2 import *
 
 
 def query_execute(query, data_to_modify=None, return_data='all_data'):
