@@ -36,6 +36,7 @@ Top menu
 
 /* The navigation bar */
 .menu-top {
+    z-index: 2;
     box-sizing: border-box;
     background-color: #61a2c8;
     position: fixed;

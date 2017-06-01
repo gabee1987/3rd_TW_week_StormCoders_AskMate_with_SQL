@@ -46,6 +46,6 @@ select_from_answer = ("""SELECT answer.message
                                     ON answer.user_id = %s;""")
 
 
-select_users = """SELECT first_name, last_name, username, birth_date, email, reputation\
+select_users = """SELECT id, first_name, last_name, username, birth_date, email, reputation\
                 FROM users\
                 ORDER BY id;"""
