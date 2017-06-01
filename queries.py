@@ -36,20 +36,24 @@ insert_new_answer_to_database = """INSERT INTO answer (submission_time, vote_num
                                 VALUES(%s, %s, %s, %s, %s);"""
 
 select_from_question = """SELECT question.title, question.id
-                                FROM question
-                                INNER JOIN users
-                                    ON question.user_id = users.id\
-                                    WHERE users.id = %s;"""
+                            FROM question
+                            INNER JOIN users
+                            ON question.user_id = users.id\
+                            WHERE users.id = %s;"""
 
 select_from_answer = """SELECT answer.message
-                                FROM answer
-                                INNER JOIN users
-                                    ON answer.user_id = users.id\
-                                    WHERE users.id = %s;"""
+                        FROM answer
+                        INNER JOIN users
+                        ON answer.user_id = users.id\
+                        WHERE users.id = %s;"""
 
 
 select_users = """SELECT id, first_name, last_name, username, birth_date, email, reputation\
-                FROM users\
-                ORDER BY id;"""
+                    FROM users\
+                    ORDER BY id;"""
 
-get_all_users = """SELECT username, id FROM users"""
+get_all_users = """SELECT username, id FROM users;"""
+
+
+add_new_user = """INSERT INTO users (first_name, last_name, username, birth_date, email)\
+                    VALUES(%s, %s, %s, %s, %s);"""

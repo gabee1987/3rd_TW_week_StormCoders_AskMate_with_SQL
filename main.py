@@ -42,7 +42,7 @@ def new_question():
         Displays the question form page.
     '''
     query = get_all_users
-    users = query_execute(query, 'all_data')
+    users = query_execute(query)
     return render_template('question_form.html', users=users)
 
 
@@ -54,9 +54,9 @@ def add_new_question():
     dt = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     question_title = request.form['q_title']
     question_message = request.form['q_message']
-    user_select = request.form['chose_user']
+    user_select = request.form['user_select']
     query = insert_new_question
-    data_to_modify = (dt, 0, 0, question_title, question_message, 0, 1, user_select)
+    data_to_modify = (dt, 0, 0, question_title, question_message, 0, user_select)
     query_execute(query, data_to_modify, 'no_data')
     return redirect("/")
 
@@ -165,9 +165,9 @@ def display_answer(q_id=None):
 
 @app.route('/question/new-answer/<q_id>', methods=['POST'])
 def add_new_answer(q_id=None):
-    """
+    '''
     Add the new answer to database.
-    """
+    '''
     dt = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     answer_message = request.form["answer_message"]
     query = insert_new_answer_to_database
@@ -194,8 +194,7 @@ def add_registration():
     username = request.form['username']
     birth_date = request.form['bday']
     email = request.form['email']
-    query = """INSERT INTO users (first_name, last_name, username, birth_date, email)\
-                VALUES(%s, %s, %s, %s, %s);"""
+    query = add_new_user
     data_to_modify = (first_name, last_name, username, birth_date, email)
     query_execute(query, data_to_modify, 'no_data')
     return redirect("/")
