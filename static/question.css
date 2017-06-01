@@ -1,15 +1,14 @@
-* {
-  font-family: 'Raleway', sans-serif;
-}
-
-/*#home {
-background-position: auto;
-padding-top: 1rem; 
-background-attachment: fixed;
-background: -webkit-linear-gradient(top, #e5ebeb, #b7cbc9);
-background: linear-gradient(top, #e5ebeb, #b7cbc9);
-}
+/* AskMate Q&A website assignment 
+    by StormCoders
 */
+
+
+/* 
+==========================================================================
+Globals
+==========================================================================
+*/
+
 
 html {
     min-height: 100%;
