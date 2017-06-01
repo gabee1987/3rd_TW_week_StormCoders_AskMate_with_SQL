@@ -1,0 +1,45 @@
+<!DOCTYPE HTML>
+
+<html>
+    <head>
+       <meta charset="utf-8">
+       <meta name="viewport" content="width=device-width, initial-scale=1">
+       <link rel="stylesheet" href="/static/new_form.css">
+       <link rel="stylesheet" type="text/css"
+           href="https://fonts.googleapis.com/css?family=Raleway">
+       <title>User page</title>
+   </head>
+   <body>
+       <div class="menu-top">
+            <img href="www.codecool.hu" src="/static/img/codecool_logo.svg" alt="Codecool logo" style="width:300px;height:50px;">
+            <ul>
+                <li><a href="/index">Home</a></li>
+                <li><a href="/question/new">New question</a></li>
+                <li><a href="/all-user">All user</a></li>
+                <li><a href="/registration">New User</a></li>
+            </ul>
+        </div>
+       <table>
+           <tr>
+               <th>Your questions</th>
+           </tr>
+           <tr>
+                {% for question_datas in selected_question_datas %}
+                    {% for question_id_and_title in question_datas %}
+                        <td>
+                            <a href="/question/question_id_and_title[1]">question_id_and_title[0]</a>
+                        </td>
+                    {% endfor %}
+                {% endfor %}
+           </tr>
+           <tr>
+               <th>Your answers</th>
+           </tr>
+           <tr>
+                {% for answer in selected_answer_datas %}
+                    <td>answer</td>
+                {% endfor %}
+           </tr>
+       </table>
+   </body>
+</html>

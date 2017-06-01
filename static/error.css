@@ -1,0 +1,52 @@
+/* error page CSS for Application-process---Basic-SQL_part2 assignment 
+    by Gabor Koncz
+*/
+
+
+/* 
+==========================================================================
+Globals
+==========================================================================
+*/
+html {
+    min-height: 100%;
+    margin: auto;
+}
+body {
+    font-weight: lighter;
+    margin: 0;
+    position: center;
+    font-family: 'Raleway', sans-serif;
+    box-sizing: border-box;
+    height: 100%;
+    background: fixed;
+    background: -webkit-radial-gradient(circle, #e8e9eb 10%, #a2a5aa 10%); /* Safari 5.1-6.0 */
+    background: -o-radial-gradient(circle, #e8e9eb 10%, #a2a5aa 10%); /* Opera 11.6-12.0 */
+    background: -moz-radial-gradient(circle, #e8e9eb 10%, #a2a5aa 10%); /* Firefox 3.6-15 */
+    background: radial-gradient(circle, #e8e9eb 30%, #a2a5aa 100%); /* Standard syntax */
+}
+
+
+/* 
+==========================================================================
+Error
+==========================================================================
+*/
+
+
+.error {
+    box-sizing: border-box;   
+}
+h1 {
+    color: #F44336;
+    padding-top: 2em;
+    text-align: center;
+    text-shadow: 0px 1px 1px #888888;
+}
+
+h2 {
+    color: #F44336;
+    padding-top: 2em;
+    text-align: center;
+    text-shadow: 0px 1px 1px #888888;
+}
