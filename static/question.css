@@ -277,7 +277,7 @@ Answer table
 
 .ans-table { 
   margin: auto 0em;
-  max-width: 90%;
+  max-width: 100%;
   min-width: 80%;
   border-collapse: collapse;
 }
